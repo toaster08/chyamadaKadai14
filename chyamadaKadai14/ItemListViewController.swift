@@ -61,7 +61,7 @@ extension ItemListViewController {
 
     @IBAction private func addItem(segue: UIStoryboardSegue) {
         guard let sourceViewController = segue.source as? AddItemViewController,
-              let itemName = sourceViewController.itemNameTextField.text else {
+              let itemName = sourceViewController.itemName else {
             return
         }
 

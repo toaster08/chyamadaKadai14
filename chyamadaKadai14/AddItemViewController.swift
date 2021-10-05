@@ -8,7 +8,9 @@
 import UIKit
 
 final class AddItemViewController: UIViewController {
-    @IBOutlet weak var itemNameTextField: UITextField! {
+    var itemName: String?
+
+    @IBOutlet private weak var itemNameTextField: UITextField! {
         didSet {
             saveBarButtonItem.isEnabled = false
             itemNameTextField.addTarget(self, action: #selector(validateName), for: .editingChanged)
@@ -27,6 +29,7 @@ final class AddItemViewController: UIViewController {
             return
         }
 
+        itemName = itemNameString
         saveBarButtonItem.isEnabled = true
     }
 }
