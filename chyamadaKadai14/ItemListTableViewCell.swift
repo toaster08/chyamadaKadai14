@@ -16,6 +16,6 @@ final class ItemListTableViewCell: UITableViewCell {
 
     func configure(fruit: Fruit) {
         itemNameLabel.text = fruit.name
-        checkImageView.image = fruit.isChecked ? UIImage.init(systemName: "checkmark"):nil
+        checkImageView.image = fruit.isChecked ? UIImage(systemName: "checkmark") : nil
     }
 }
