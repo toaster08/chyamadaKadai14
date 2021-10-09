@@ -8,28 +8,25 @@
 import UIKit
 
 final class AddItemViewController: UIViewController {
-    var itemName: String?
+    private(set) var itemName: String?
 
     @IBOutlet private weak var itemNameTextField: UITextField! {
         didSet {
             saveBarButtonItem.isEnabled = false
-            itemNameTextField.addTarget(self, action: #selector(validateName), for: .editingChanged)
+            itemNameTextField.addTarget(self, action: #selector(itemNameTextFieldEditingChanged), for: .editingChanged)
         }
     }
 
     @IBOutlet private weak var saveBarButtonItem: UIBarButtonItem!
 
-    @objc private func validateName() {
-        guard let itemNameString = itemNameTextField.text  else { return }
+    @objc private func itemNameTextFieldEditingChanged() {
+        saveBarButtonItem.isEnabled = isValid(itemName: itemNameTextField.text ?? "")
+        itemName = itemNameTextField.text
+    }
 
-        if itemNameString
+    private func isValid(itemName: String) -> Bool {
+        !itemName
             .trimmingCharacters(in: .whitespacesAndNewlines)
-            .isEmpty {
-            saveBarButtonItem.isEnabled = false
-            return
-        }
-
-        itemName = itemNameString
-        saveBarButtonItem.isEnabled = true
+            .isEmpty
     }
 }

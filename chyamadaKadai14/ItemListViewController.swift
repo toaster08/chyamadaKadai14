@@ -8,8 +8,8 @@
 import UIKit
 
 struct Fruit {
-    var name: String = ""
-    var isChecked: Bool = false
+    var name: String
+    var isChecked: Bool
 }
 
 final class ItemListViewController: UIViewController {
@@ -51,7 +51,7 @@ extension ItemListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルのタップ時にBool値を反転させる処理
-        fruitsList[indexPath.row].isChecked = fruitsList[indexPath.row].isChecked  ? false:true
+        fruitsList[indexPath.row].isChecked.toggle()
         tableView.reloadData()
     }
 }
